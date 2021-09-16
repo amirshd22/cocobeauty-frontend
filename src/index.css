@@ -1,13 +1,179 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+main {
+  min-height: 80vh;
+  text-decoration: none !important;
+  margin-bottom: 100px;
+  margin-top: 5px;
+  font-family: "Shabnam", sans-serif !important;
+}
+p {
+  font-family: "Shabnam", sans-serif !important;
+}
+button {
+  font-family: "Shabnam", sans-serif !important;
+}
+code {
+  font-family: "Shabnam", source-code-pro, Menlo, Monaco, Consolas,
+    "Courier New", monospace !important;
+}
+.rating span {
+  margin: 0.1rem;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+h1 {
+  font-size: 1.8rem;
+  padding: 1rem 0;
+  font-family: "Shabnam", sans-serif !important;
+}
+
+h2 {
+  font-size: 1.4rem;
+  padding: 0.5rem 0;
+  font-family: "Shabnam", sans-serif !important;
+}
+a {
+  font-family: "Shabnam", sans-serif !important;
+  font-size: small;
+}
+.submitButton {
+  background: #ec008c; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #fc6767, #ec008c);
+  background: linear-gradient(to right, #fc6767, #ec008c);
+}
+.reviewBtn {
+  background-color: #ec008c !important;
+}
+.dropdown-menu {
+  border-radius: 10px !important;
+  padding: 10px !important;
+  transition: 0.2 !important;
+}
+
+@media screen and (max-width: 600px) {
+  .effect-2 {
+    width: 100%;
+    height: 100%;
+  }
+  .effect-2 .effect-text {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    top: 50%;
+    left: 0;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    /* transition: 0.5s; */
+  }
+  .effect-2 .effect-text h2 {
+    display: inline-block;
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 400;
+    margin: 5px 7.5px 0 7.5px;
+  }
+  .productContainer {
+    width: 100%;
+  }
+  .logo {
+    width: 100%;
+  }
+}
+.dropdown-item.active {
+  background: #333333 !important;
+  border-radius: 5px;
+}
+@media screen and (min-width: 700px) {
+  .effect-2 {
+    width: 100%;
+    height: 293px;
+  }
+  .effect-2 .effect-text {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+    top: 50%;
+    left: 0;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    /* transition: 0.5s; */
+  }
+  .effect-2 .effect-text h2 {
+    display: inline-block;
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: 400;
+    margin: 5px 7.5px 0 7.5px;
+  }
+
+  .productContainer {
+    width: 83%;
+  }
+
+  .logo {
+    width: 20%;
+    height: 20%;
+  }
+}
+
+.highlightImage img {
+  border: solid 4px lightgrey;
+  transition: 0.3s;
+}
+
+.highlightImage:hover img {
+  border: solid 4px #e6c5bc;
+}
+
+.effect-2 {
+  position: relative;
+  margin-bottom: 30px;
+  overflow: hidden;
+}
+
+.effect-2 .effect-img {
+  position: relative;
+  font-size: 0;
+  overflow: hidden;
+  height: 100%;
+}
+
+.effect-2 .effect-img img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform: scale(1.1);
+  transition: 0.5s;
+  object-fit: cover;
+}
+
+.effect-2:hover .effect-img img {
+  bottom: 0;
+}
+
+.effect-2:hover .effect-text {
+  top: 0;
+  opacity: 1;
+}
+
+.effect-2 .effect-btn {
+  position: absolute;
+  width: 100%;
+  padding: 15px 7.5px;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.effect-2 .effect-btn .btn {
+  position: relative;
+  display: inline-block;
+  height: 35px;
+  padding: 7px 15px;
+  margin: 0 7.5px;
+  color: #333333;
+  background: #ffffff;
+  text-decoration: none;
 }
