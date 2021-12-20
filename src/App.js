@@ -18,7 +18,6 @@ import BlogDetailsScreen from "./screens/BlogDetailsScreen";
 import "bootstrap/dist/css/bootstrap.min.css";
 import AboutUsScreen from "./screens/AboutUsScreen";
 import ContactUsScreen from "./screens/ContactUsScreen";
-import { Row } from "react-bootstrap";
 
 function App() {
   return (

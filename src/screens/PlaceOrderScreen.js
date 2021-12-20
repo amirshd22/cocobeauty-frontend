@@ -1,5 +1,10 @@
 import React, { useEffect } from "react";
-import { Button, Row, Col, ListGroup, Image, Card } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import ListGroup from "react-bootstrap/ListGroup";
+import Image from "react-bootstrap/Image";
+import Card from "react-bootstrap/Card";
 import { useDispatch, useSelector } from "react-redux";
 import CheckoutSteps from "../Components/CheckoutSteps";
 import { Link } from "react-router-dom";
@@ -7,6 +12,7 @@ import Message from "../Components/Message";
 import { createOrder } from "../actions/orderActions";
 import { ORDER_CREATE_RESET } from "../constants/orderConstants";
 import Loader from "../Components/Loader";
+import NumberFormat from "react-number-format";
 function PlaceOrderScreen({ history }) {
   const { order, error, success, loading } = useSelector(
     (state) => state.orderCreate
@@ -23,7 +29,7 @@ function PlaceOrderScreen({ history }) {
         item.qty,
     0
   );
-  const shippingPrice = itemsPrice > 500000 ? 0 : 15000;
+  const shippingPrice = itemsPrice > 500000 ? 0 : 0;
   const totalPrice = Number(itemsPrice) + Number(shippingPrice);
   const taxes = Number(totalPrice * 0.01);
   useEffect(() => {
@@ -41,6 +47,7 @@ function PlaceOrderScreen({ history }) {
     if (!userInfo) {
       history.push("/login?redirect=place-order");
     }
+    // eslint-disable-next-line
   }, [success, history, dispatch]);
 
   const placeOrder = () => {
@@ -71,7 +78,14 @@ function PlaceOrderScreen({ history }) {
                 <ListGroup.Item>
                   <Row>
                     <Col>
-                      <strong>تومان{itemsPrice}</strong>
+                      <strong>
+                        <NumberFormat
+                          value={itemsPrice}
+                          displayType={"text"}
+                          thousandSeparator={true}
+                          prefix={"تومان"}
+                        />
+                      </strong>
                     </Col>
                     <Col>
                       <small>:قیمت کالا ها</small>
@@ -81,7 +95,14 @@ function PlaceOrderScreen({ history }) {
                 <ListGroup.Item>
                   <Row>
                     <Col>
-                      <strong>تومان{shippingPrice}</strong>
+                      <strong>
+                        <NumberFormat
+                          value={shippingPrice}
+                          displayType={"text"}
+                          thousandSeparator={true}
+                          prefix={"تومان"}
+                        />
+                      </strong>
                     </Col>
                     <Col>
                       <small>:هزینه ارسال</small>
@@ -94,7 +115,14 @@ function PlaceOrderScreen({ history }) {
                 <ListGroup.Item>
                   <Row>
                     <Col>
-                      <strong>تومان{taxes}</strong>
+                      <strong>
+                        <NumberFormat
+                          value={taxes}
+                          displayType={"text"}
+                          thousandSeparator={true}
+                          prefix={"تومان"}
+                        />
+                      </strong>
                     </Col>
                     <Col>
                       <small>:مالیات خرید</small>
@@ -107,7 +135,14 @@ function PlaceOrderScreen({ history }) {
                 <ListGroup.Item>
                   <Row>
                     <Col>
-                      <strong>تومان{totalPrice}</strong>
+                      <strong>
+                        <NumberFormat
+                          value={totalPrice}
+                          displayType={"text"}
+                          thousandSeparator={true}
+                          prefix={"تومان"}
+                        />
+                      </strong>
                     </Col>
                     <Col>
                       <small>:مبلغ قال پرداخت</small>
@@ -193,13 +228,27 @@ function PlaceOrderScreen({ history }) {
                           </Col>
                           <Col md={4}>
                             {item.qty} X{" "}
-                            {item.hasOff
-                              ? item.price - item.price * item.hasOff
-                              : item.price}{" "}
+                            <NumberFormat
+                              value={
+                                item.hasOff
+                                  ? item.price - item.price * item.hasOff
+                                  : item.price
+                              }
+                              displayType={"text"}
+                              thousandSeparator={true}
+                              prefix={"تومان"}
+                            />
                             ={" "}
-                            {item.qty * item.hasOff
-                              ? item.price - item.price * item.hasOff
-                              : item.price}
+                            <NumberFormat
+                              value={
+                                item.qty * item.hasOff
+                                  ? item.price - item.price * item.hasOff
+                                  : item.price
+                              }
+                              displayType={"text"}
+                              thousandSeparator={true}
+                              prefix={"تومان"}
+                            />
                           </Col>
                         </Row>
                       </ListGroup.Item>

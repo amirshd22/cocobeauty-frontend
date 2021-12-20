@@ -1,5 +1,5 @@
 import React from "react";
-import { Image } from "react-bootstrap";
+import Image from "react-bootstrap/Image";
 import { Link } from "react-router-dom";
 function Product({ product }) {
   return (
@@ -14,6 +14,7 @@ function Product({ product }) {
             className=""
             fluid
             alt={product.name}
+            style={{ objectFit: "cover" }}
           />
         </div>
         <div className="effect-text">

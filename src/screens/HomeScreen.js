@@ -11,15 +11,13 @@ import {
   PRODUCT_DETAILS_RESET,
   PRODUCT_LIST_RESET,
 } from "../constants/productConstants";
-import {
-  Carousel,
-  Row,
-  Col,
-  Image,
-  ListGroup,
-  Button,
-  Card,
-} from "react-bootstrap";
+import Carousel from "react-bootstrap/Carousel";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Image from "react-bootstrap/Image";
+import ListGroup from "react-bootstrap/ListGroup";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
 import { carouselImages } from "../actions/stylesActions";
 import Highlights from "../Components/Highlights";
 import { Link } from "react-router-dom";
@@ -52,16 +50,13 @@ function HomeScreen({ history }) {
     loading: loadingProducts,
     products,
   } = useSelector((state) => state.productList);
-  const {
-    error: errorProductsHasOff,
-    loading: loadingProductsHasOff,
-    hasOffProducts,
-  } = useSelector((state) => state.productListHasOff);
+  const { hasOffProducts } = useSelector((state) => state.productListHasOff);
   const { images, loading, error } = useSelector(
     (state) => state.carouselImages
   );
 
   const [offset, setOffset] = useState(0);
+  // eslint-disable-next-line
   const [limit, setLimit] = useState(9);
   let keyword = history.location.search.split("?")[1];
 
@@ -70,10 +65,12 @@ function HomeScreen({ history }) {
       type: PRODUCT_LIST_RESET,
     });
     dispatch(carouselImages());
+
     getProducts();
     dispatch({
       type: PRODUCT_DETAILS_RESET,
     });
+    // eslint-disable-next-line
   }, [keyword, history, dispatch]);
 
   const getProducts = () => {
@@ -105,7 +102,7 @@ function HomeScreen({ history }) {
                               <Image
                                 src={`https://api.cocobeauty.ir${image.image}`}
                                 className=" w-100 h-100"
-                                style={{ objectFit: "fill" }}
+                                style={{ objectFit: "cover" }}
                               />
                             </Carousel.Item>
                           );
@@ -121,10 +118,10 @@ function HomeScreen({ history }) {
                           }
                           className="text-decoration-none"
                         >
-                          <Card>
+                          <Card className="h-100">
                             <Card.Header
                               className="text-light text-center"
-                              style={{ backgroundColor: "#ec008c" }}
+                              style={{ backgroundColor: "#fc6767" }}
                             >
                               {" "}
                               تخفیف هفته کوکوبیوتی
@@ -154,7 +151,7 @@ function HomeScreen({ history }) {
                             </Card.Body>
                             <Card.Footer
                               className="text-light text-center"
-                              style={{ backgroundColor: "#ec008c" }}
+                              style={{ backgroundColor: "#fc6767" }}
                             >
                               %تخفیف {Number(hasOffProduct.hasOff) * 100}
                             </Card.Footer>
@@ -164,24 +161,18 @@ function HomeScreen({ history }) {
                     </Col>
                   </Row>
                 </ListGroup.Item>
-                <h3 className="text-center mt-2">
-                  تمامی محصولات مناسب پوست شما
-                </h3>
-                <div className="row row-cols-1 row-cols-md-3 g-3 m-auto  w-75">
-                  {highlights.map((highlight) => (
-                    <Col
-                      key={highlight.id}
-                      className="justify-content-center"
-                      style={{ height: 100 }}
-                    >
-                      <Highlights highlight={highlight} />
-                    </Col>
-                  ))}
-                </div>
               </>
             ) : (
               <Message variant="info">{keyword} جستجوی شما برای</Message>
             )}
+            <ListGroup.Item>
+              <h3 className="text-center mt-2">تمامی محصولات مناسب پوست شما</h3>
+              <div className="row row-cols-1 row-cols-md-3 g-3 m-auto  w-75">
+                {highlights.map((highlight) => (
+                  <Highlights key={highlight.id} highlight={highlight} />
+                ))}
+              </div>
+            </ListGroup.Item>
             <ListGroup.Item className="productContainer m-auto">
               <h1 className="text-center ">محصولات جدید کوکوبیوتی</h1>
               {loadingProducts && <Loader />}
@@ -198,16 +189,18 @@ function HomeScreen({ history }) {
                   );
                 })}
               </div>
+              {!keyword && (
+                <div className="text-center">
+                  <Button
+                    onClick={getProducts}
+                    variant="outline-dark"
+                    className="btn-sm w-50 mt-2"
+                  >
+                    مشاهده بیشتر
+                  </Button>
+                </div>
+              )}
             </ListGroup.Item>
-            {!keyword && (
-              <Button
-                onClick={getProducts}
-                variant="outline-dark"
-                className="btn-sm w-50 m-auto mt-2"
-              >
-                مشاهده بیشتر
-              </Button>
-            )}
           </>
         )}
       </ListGroup>

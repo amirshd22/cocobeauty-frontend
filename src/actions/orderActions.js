@@ -95,9 +95,9 @@ export const payOrder =
         type: ORDER_PAY_REQUEST,
       });
 
-      const {
-        userLogin: { userInfo },
-      } = getState();
+      // const {
+      //   userLogin: { userInfo },
+      // } = getState();
 
       const config = {
         headers: {

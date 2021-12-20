@@ -44,7 +44,7 @@ export const login = (email, password) => async (dispatch) => {
       let exp = new Date(
         new Date().valueOf() + 1000 * 60 * 60 * 1000
       ).toUTCString();
-      document.cookie = `userInfo=${data.token} ; expires=${exp};domain=.localhost ;path=/ ;secure;SameSite=Lax;`;
+      document.cookie = `userInfo=${data.token} ; expires=${exp};domain=.cocobeauty.ir ;path=/ ;secure;SameSite=Lax;`;
       localStorage.setItem("userInfo", JSON.stringify(data.token));
     } else {
       dispatch({
@@ -110,7 +110,7 @@ export const register = (email, password, name) => async (dispatch) => {
     let exp = new Date(
       new Date().valueOf() + 1000 * 60 * 60 * 1000
     ).toUTCString();
-    document.cookie = `userInfo=${data.token} ; expires=${exp};path=/;secure ;SameSite=Lax;`;
+    document.cookie = `userInfo=${data.token} ; expires=${exp};domain=.cocobeauty.ir ;path=/;secure ;SameSite=Lax;`;
     localStorage.setItem("userInfo", JSON.stringify(data.token));
   } catch (error) {
     dispatch({

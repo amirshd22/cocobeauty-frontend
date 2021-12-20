@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateUserDetails, getUserDetails } from "../actions/userAction";
 import { USER_UPDATE_RESET } from "../constants/userConstants";
 import { listMyOrders } from "../actions/orderActions";
+import NumberFormat from "react-number-format";
 
 function ProfileScreen({ history }) {
   const [email, setEmail] = useState("");
@@ -168,7 +169,14 @@ function ProfileScreen({ history }) {
                   <tr key={order._id} className="text-center">
                     <td>{order._id}</td>
                     <td>{order.createdAt.substring(0, 10)}</td>
-                    <td>تومان{order.TotalPrice}</td>
+                    <td>
+                      <NumberFormat
+                        value={order.TotalPrice}
+                        displayType={"text"}
+                        thousandSeparator={true}
+                        prefix={"تومان"}
+                      />
+                    </td>
                     <td className="text-center">
                       {order.isPaid ? (
                         order.paidAt.substring(0, 10)

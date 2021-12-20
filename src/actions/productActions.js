@@ -13,7 +13,6 @@ import {
   PRODUCT_LIST_BY_CATEGORY_SUCCESS,
   PRODUCT_LIST_HAS_OFF_FAIL,
   PRODUCT_LIST_HAS_OFF_REQUEST,
-  PRODUCT_LIST_HAS_OFF_RESET,
   PRODUCT_LIST_HAS_OFF_SUCCESS,
 } from "../constants/productConstants";
 import { client } from "../config/client";

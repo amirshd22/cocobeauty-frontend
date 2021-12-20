@@ -30,7 +30,6 @@ function DefaultScreen({ match, history }) {
   }, [dispatch, findType, keyword]);
   return (
     <div className="text-end container">
-      <h1></h1>
       {loading ? (
         <Loader />
       ) : error ? (

@@ -1,18 +1,17 @@
 import React, { useEffect } from "react";
-import {
-  Card,
-  Container,
-  ListGroup,
-  Button,
-  Row,
-  Image,
-  Col,
-} from "react-bootstrap";
+import Card from "react-bootstrap/Card";
+import Container from "react-bootstrap/Container";
+import ListGroup from "react-bootstrap/ListGroup";
+import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
+import Image from "react-bootstrap/Image";
+import Col from "react-bootstrap/Col";
 import { payOrder, getOrderDetails } from "../actions/orderActions";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../Components/Loader";
 import { useCookies } from "react-cookie";
 function CompleteOrderScreen({ history }) {
+  // eslint-disable-next-line
   const [cookies, setCookie] = useCookies();
   const transactionId = cookies.transId;
 

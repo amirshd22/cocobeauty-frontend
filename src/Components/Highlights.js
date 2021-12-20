@@ -5,14 +5,13 @@ function Highlights({ highlight }) {
   return (
     <Link
       to={highlight.link}
-      className="text-decoration-none highlightImage  text-dark d-flex flex-column justify-content-center align-items-center w-75 m-auto"
-      style={{ height: "100%" }}
+      className="text-decoration-none highlightImage text-dark d-flex flex-column justify-content-center align-items-center"
     >
       <Image
         src={highlight.image}
-        className="w-50 h-75 rounded-circle "
+        className="rounded w-100"
         fluid
-        style={{ objectFit: "cover" }}
+        style={{ objectFit: "cover", height: 300 }}
         alt={highlight.name}
       />
       <p className="text-center mt-2">{highlight.name}</p>

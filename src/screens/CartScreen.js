@@ -12,6 +12,7 @@ import {
 } from "react-bootstrap";
 import Message from "../Components/Message";
 import { addToCart, removeFromCart } from "../actions/cartActions";
+import NumberFormat from "react-number-format";
 
 function CartScreen({ match, location, history }) {
   const productId = match.params.id;
@@ -47,16 +48,20 @@ function CartScreen({ match, location, history }) {
                 محصولات شما
               </h2>
               <strong>
-                تومان
-                {cartItems.reduce(
-                  (acc, item) =>
-                    acc +
-                    item.qty *
-                      (item.hasOff
-                        ? item.price - item.price * Number(item.hasOff)
-                        : item.price),
-                  0
-                )}
+                <NumberFormat
+                  value={cartItems.reduce(
+                    (acc, item) =>
+                      acc +
+                      item.qty *
+                        (item.hasOff
+                          ? item.price - item.price * Number(item.hasOff)
+                          : item.price),
+                    0
+                  )}
+                  displayType={"text"}
+                  thousandSeparator={true}
+                  prefix={"تومان"}
+                />
               </strong>
             </ListGroup.Item>
             <ListGroup.Item>

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
-import { Row, Col, Image } from "react-bootstrap";
-
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Image from "react-bootstrap/Image";
 function AboutUsScreen() {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });

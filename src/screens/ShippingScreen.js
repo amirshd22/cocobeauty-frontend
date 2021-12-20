@@ -25,7 +25,7 @@ function ShippingScreen({ history }) {
     if (!userInfo) {
       history.push("/login?redirect=shipping");
     }
-  }, [history]);
+  }, [history, userInfo]);
 
   return (
     <FormContainer>

@@ -1,5 +1,9 @@
 import React from "react";
-import { Container, Row, Col, Button, Image } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Image from "react-bootstrap/Image";
 import { Link } from "react-router-dom";
 
 function Footer() {
@@ -8,6 +12,19 @@ function Footer() {
       <Container className="text-end">
         <Row className="align-items-center">
           <Col md={4} className="text-center ">
+            <Row className="mb-1">
+              <Col>
+                <Button
+                  variant="outline-light"
+                  className="rounded"
+                  onClick={() =>
+                    window.scrollTo({ top: 0, behavior: "smooth" })
+                  }
+                >
+                  بازگشت به بالا
+                </Button>
+              </Col>
+            </Row>
             <Row>
               <Col md={6}>
                 <Image
@@ -24,45 +41,12 @@ function Footer() {
                 </p>
               </Col>
             </Row>
-            <Row>
-              <Col>
-                <Button
-                  variant="outline-light"
-                  className="rounded"
-                  onClick={() =>
-                    window.scrollTo({ top: 0, behavior: "smooth" })
-                  }
-                >
-                  بازگشت به بالا
-                </Button>
-              </Col>
-              <Col>
-                <a
-                  onClick={() =>
-                    window.open(
-                      "https://panel.aqayepardakht.ir/trustGateway/2788",
-                      null,
-                      "width=655, height=635, scrollbars=no, resizable=no"
-                    )
-                  }
-                  href="javascript:void(0)"
-                >
-                  <img
-                    style={{
-                      borderRadius: 0,
-                      marginRight: 10,
-                      width: 100,
-                      height: 120,
-                    }}
-                    src="https://panel.aqayepardakht.ir/trustlogo/2.svg"
-                    alt="aghayepardakht"
-                  />
-                </a>
-              </Col>
+            <Row className="row-cols-1 g-1">
               <Col>
                 <a
                   referrerpolicy="origin"
                   target="_blank"
+                  rel="noreferrer"
                   href="https://trustseal.enamad.ir/?id=232255&amp;Code=Rc080FD3pYIoNNhNbXY0"
                 >
                   <img
@@ -152,10 +136,14 @@ function Footer() {
             <h5 className="text-light mb-3">خدمات مشتریان</h5>
             <ul style={{ listStyle: "none" }}>
               <li>
-                <a className="text-muted">گزارش باگ (بزودی)</a>
+                <a href="/" className="text-muted">
+                  گزارش باگ (بزودی)
+                </a>
               </li>
               <li>
-                <a className="text-muted">حریم خصوصی</a>
+                <a href="/" className="text-muted">
+                  حریم خصوصی
+                </a>
               </li>
             </ul>
           </Col>

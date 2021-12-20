@@ -1,14 +1,21 @@
 import React, { useEffect } from "react";
-import { Button, Row, Col, ListGroup, Image, Card } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import ListGroup from "react-bootstrap/ListGroup";
+import Image from "react-bootstrap/Image";
+import Card from "react-bootstrap/Card";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Message from "../Components/Message";
 import { getOrderDetails } from "../actions/orderActions";
 import Loader from "../Components/Loader";
 import { useCookies } from "react-cookie";
+import NumberFormat from "react-number-format";
 
 function OrderScreen({ match, history }) {
   const orderId = match.params.id;
+  // eslint-disable-next-line
   const [cookies, setCookie] = useCookies(["transId"]);
 
   const { order, error, loading } = useSelector((state) => state.orderDetails);
@@ -50,6 +57,7 @@ function OrderScreen({ match, history }) {
       domain: "cocobeauty.ir",
     });
     localStorage.setItem("transId", `${orderId}`);
+    // eslint-disable-next-line
   }, [order, orderId, dispatch]);
   return loading ? (
     <Loader />
@@ -69,7 +77,14 @@ function OrderScreen({ match, history }) {
               <ListGroup.Item>
                 <Row>
                   <Col>
-                    <strong>تومان{order.itemsPrice}</strong>
+                    <strong>
+                      <NumberFormat
+                        value={order.itemsPrice}
+                        displayType={"text"}
+                        thousandSeparator={true}
+                        prefix={"تومان"}
+                      />
+                    </strong>
                   </Col>
                   <Col>
                     <small>:قیمت کالا ها</small>
@@ -79,7 +94,14 @@ function OrderScreen({ match, history }) {
               <ListGroup.Item>
                 <Row>
                   <Col>
-                    <strong>تومان{order.shippingPrice}</strong>
+                    <strong>
+                      <NumberFormat
+                        value={order.shippingPrice}
+                        displayType={"text"}
+                        thousandSeparator={true}
+                        prefix={"تومان"}
+                      />
+                    </strong>
                   </Col>
                   <Col>
                     <small>:هزینه ارسال</small>
@@ -92,7 +114,14 @@ function OrderScreen({ match, history }) {
               <ListGroup.Item>
                 <Row>
                   <Col>
-                    <strong>تومان{order.TotalPrice}</strong>
+                    <strong>
+                      <NumberFormat
+                        value={order.TotalPrice}
+                        displayType={"text"}
+                        thousandSeparator={true}
+                        prefix={"تومان"}
+                      />
+                    </strong>
                   </Col>
                   <Col>
                     <small>:مبلغ قابل پرداخت</small>
@@ -207,13 +236,27 @@ function OrderScreen({ match, history }) {
                           <Col md={4}>
                             <strong>
                               {item.qty} X{" "}
-                              {item.hasOff
-                                ? item.price - item.price * item.hasOff
-                                : item.price}{" "}
+                              <NumberFormat
+                                value={
+                                  item.hasOff
+                                    ? item.price - item.price * item.hasOff
+                                    : item.price
+                                }
+                                displayType={"text"}
+                                thousandSeparator={true}
+                                prefix={"تومان"}
+                              />
                               ={" "}
-                              {item.qty * item.hasOff
-                                ? item.price - item.price * item.hasOff
-                                : item.price}
+                              <NumberFormat
+                                value={
+                                  item.qty * item.hasOff
+                                    ? item.price - item.price * item.hasOff
+                                    : item.price
+                                }
+                                displayType={"text"}
+                                thousandSeparator={true}
+                                prefix={"تومان"}
+                              />
                             </strong>
                           </Col>
                         </Row>

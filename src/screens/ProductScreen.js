@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  Row,
-  Col,
-  Image,
-  ListGroup,
-  Button,
-  Card,
-  Form,
-} from "react-bootstrap";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Image from "react-bootstrap/Image";
+import ListGroup from "react-bootstrap/ListGroup";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import Form from "react-bootstrap/Form";
+import Carousel from "react-bootstrap/Carousel";
 import Rating from "../Components/Rating";
 import colors from "../config/colors";
 import {
@@ -22,6 +21,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../Components/Loader";
 import Message from "../Components/Message";
+import NumberFormat from "react-number-format";
 
 function ProductScreen({ match, history }) {
   const dispatch = useDispatch();
@@ -66,6 +66,7 @@ function ProductScreen({ match, history }) {
       })
     );
   };
+  console.log(product);
   return (
     <div className="text-end container">
       {loading ? (
@@ -77,12 +78,28 @@ function ProductScreen({ match, history }) {
           <div className="border">
             <Row className="justify-content-end g-0">
               <Col md={7}>
-                <Image
-                  src={`https://api.cocobeauty.ir${product.image}`}
-                  alt={product.name}
-                  fluid
-                  className="w-100"
-                />
+                <Carousel>
+                  <Carousel.Item>
+                    <Image
+                      src={`https://api.cocobeauty.ir${product.image}`}
+                      alt={product.name}
+                      fluid
+                      className="w-100"
+                    />
+                  </Carousel.Item>
+                  {product.images
+                    ? product.images.map((image) => (
+                        <Carousel.Item>
+                          <Image
+                            src={`https://api.cocobeauty.ir${image.image}`}
+                            alt={image.name}
+                            fluid
+                            className="w-100"
+                          />
+                        </Carousel.Item>
+                      ))
+                    : null}
+                </Carousel>
               </Col>
               <Col md={5}>
                 <ListGroup variant="flush">
@@ -100,16 +117,26 @@ function ProductScreen({ match, history }) {
                     {product.hasOff ? (
                       <>
                         <h6>:قیمت با تخفیف</h6>
-                        <p>
-                          تومان{" "}
-                          {product.price -
-                            product.price * Number(product.hasOff)}
-                        </p>
+
+                        <NumberFormat
+                          value={
+                            product.price -
+                            product.price * Number(product.hasOff)
+                          }
+                          displayType={"text"}
+                          thousandSeparator={true}
+                          prefix={"تومان"}
+                        />
                       </>
                     ) : (
                       <>
                         <h6>:قیمت</h6>
-                        <p>تومان {product.price}</p>
+                        <NumberFormat
+                          value={product.price}
+                          displayType={"text"}
+                          thousandSeparator={true}
+                          prefix={"تومان"}
+                        />
                       </>
                     )}
                   </ListGroup.Item>
@@ -131,11 +158,15 @@ function ProductScreen({ match, history }) {
                         {product.hasOff ? (
                           <>
                             <Col>
-                              <strong>تومان</strong>{" "}
-                              <strong>
-                                {product.price -
-                                  product.price * Number(product.hasOff)}
-                              </strong>
+                              <NumberFormat
+                                value={
+                                  product.price -
+                                  product.price * Number(product.hasOff)
+                                }
+                                displayType={"text"}
+                                thousandSeparator={true}
+                                prefix={"تومان"}
+                              />
                             </Col>
 
                             <Col>
@@ -147,8 +178,12 @@ function ProductScreen({ match, history }) {
                         ) : (
                           <>
                             <Col>
-                              <strong>تومان</strong>{" "}
-                              <strong>{product.price}</strong>
+                              <NumberFormat
+                                value={product.price}
+                                displayType={"text"}
+                                thousandSeparator={true}
+                                prefix={"تومان"}
+                              />
                             </Col>
 
                             <Col>

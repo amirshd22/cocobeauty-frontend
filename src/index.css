@@ -118,6 +118,11 @@ a {
   }
 }
 
+.gridContainer {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+}
 .highlightImage img {
   border: solid 4px lightgrey;
   transition: 0.3s;
