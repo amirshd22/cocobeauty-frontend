@@ -21,7 +21,8 @@ import Card from "react-bootstrap/Card";
 import { carouselImages } from "../actions/stylesActions";
 import Highlights from "../Components/Highlights";
 import { Link } from "react-router-dom";
-
+import NumberFormat from "react-number-format";
+import { Helmet } from "react-helmet";
 const highlights = [
   {
     id: 1,
@@ -81,6 +82,13 @@ function HomeScreen({ history }) {
   const hasOffProduct = hasOffProducts ? hasOffProducts[0] : null;
   return (
     <div className="text-end">
+      <Helmet>
+        <meta
+          name="description"
+          content="فروشگاه آنلاین کوکوبیوتی فروش انواع محصولات پوستی بهداشتی"
+        />
+        <title>CocoBeauty</title>
+      </Helmet>
       <ListGroup variant="flush">
         {loading ? (
           <div className="d-flex justify-content-center">
@@ -139,10 +147,16 @@ function HomeScreen({ history }) {
                                 <ListGroup.Item className="text-center text-muted">
                                   <Row>
                                     <Col>
-                                      {hasOffProduct.price -
-                                        hasOffProduct.price *
-                                          Number(hasOffProduct.hasOff)}
-                                      تومان
+                                      <NumberFormat
+                                        value={
+                                          hasOffProduct.price -
+                                          hasOffProduct.price *
+                                            Number(hasOffProduct.hasOff)
+                                        }
+                                        displayType="text"
+                                        thousandSeparator={true}
+                                        prefix={"تومان"}
+                                      />
                                     </Col>
                                     <Col>:قیمت به همراه تخفیف</Col>
                                   </Row>

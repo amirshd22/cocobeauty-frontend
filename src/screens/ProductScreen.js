@@ -22,7 +22,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Loader from "../Components/Loader";
 import Message from "../Components/Message";
 import NumberFormat from "react-number-format";
-
+import { Helmet } from "react-helmet";
 function ProductScreen({ match, history }) {
   const dispatch = useDispatch();
   const [qty, setQty] = useState(1);
@@ -75,6 +75,10 @@ function ProductScreen({ match, history }) {
         <Message variant="danger">{error}</Message>
       ) : (
         <div className="w-100">
+          <Helmet>
+            <meta content={product.name} name="description" />
+            <title>CocoBeauty . {`${product.name}`}</title>
+          </Helmet>
           <div className="border">
             <Row className="justify-content-end g-0">
               <Col md={7}>
@@ -142,8 +146,13 @@ function ProductScreen({ match, history }) {
                   </ListGroup.Item>
                   <ListGroup.Item>
                     <h6>:توضیحات</h6>
-                    <div className="overflow-auto" style={{ height: "300px" }}>
-                      <p>{product.description}</p>
+                    <div
+                      className="overflow-auto"
+                      style={{ maxHeight: "500px" }}
+                    >
+                      <p style={{ textAlign: "justify" }}>
+                        {product.description}
+                      </p>
                     </div>
                   </ListGroup.Item>
                 </ListGroup>

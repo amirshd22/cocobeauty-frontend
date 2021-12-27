@@ -29,7 +29,7 @@ function PlaceOrderScreen({ history }) {
         item.qty,
     0
   );
-  const shippingPrice = itemsPrice > 500000 ? 0 : 0;
+  const shippingPrice = itemsPrice > 500000 ? 0 : 15000;
   const totalPrice = Number(itemsPrice) + Number(shippingPrice);
   const taxes = Number(totalPrice * 0.01);
   useEffect(() => {
