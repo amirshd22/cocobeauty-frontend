@@ -45,7 +45,6 @@ export const login = (email, password) => async (dispatch) => {
         new Date().valueOf() + 1000 * 60 * 60 * 1000
       ).toUTCString();
       document.cookie = `userInfo=${data.token} ; expires=${exp};domain=.cocobeauty.ir ;path=/ ;secure;SameSite=Lax;`;
-      localStorage.setItem("userInfo", JSON.stringify(data.token));
     } else {
       dispatch({
         type: USER_LOGIN_FAIL,
@@ -65,8 +64,7 @@ export const login = (email, password) => async (dispatch) => {
 
 export const logout = () => (dispatch) => {
   let yesterday = new Date(new Date().valueOf() - 1000 * 60 * 60 * 24);
-  document.cookie = `userInfo=; expires=${yesterday} ; path=/;`;
-  localStorage.removeItem("userInfo");
+  document.cookie = `userInfo=; expires=${yesterday};domain=.cocobeauty.ir ;path=/ ;secure;SameSite=Lax;`;
   dispatch({
     type: USER_LOGOUT,
   });
@@ -111,7 +109,6 @@ export const register = (email, password, name) => async (dispatch) => {
       new Date().valueOf() + 1000 * 60 * 60 * 1000
     ).toUTCString();
     document.cookie = `userInfo=${data.token} ; expires=${exp};domain=.cocobeauty.ir ;path=/;secure ;SameSite=Lax;`;
-    localStorage.setItem("userInfo", JSON.stringify(data.token));
   } catch (error) {
     dispatch({
       type: USER_REGISTER_FAIL,

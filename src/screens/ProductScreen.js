@@ -66,7 +66,6 @@ function ProductScreen({ match, history }) {
       })
     );
   };
-  console.log(product);
   return (
     <div className="text-end container">
       {loading ? (
@@ -123,10 +122,10 @@ function ProductScreen({ match, history }) {
                         <h6>:قیمت با تخفیف</h6>
 
                         <NumberFormat
-                          value={
+                          value={Math.round(
                             product.price -
-                            product.price * Number(product.hasOff)
-                          }
+                              product.price * Number(product.hasOff)
+                          )}
                           displayType={"text"}
                           thousandSeparator={true}
                           prefix={"تومان"}
@@ -168,10 +167,10 @@ function ProductScreen({ match, history }) {
                           <>
                             <Col>
                               <NumberFormat
-                                value={
+                                value={Math.round(
                                   product.price -
-                                  product.price * Number(product.hasOff)
-                                }
+                                    product.price * Number(product.hasOff)
+                                )}
                                 displayType={"text"}
                                 thousandSeparator={true}
                                 prefix={"تومان"}

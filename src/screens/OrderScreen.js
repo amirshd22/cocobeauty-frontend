@@ -28,7 +28,9 @@ function OrderScreen({ match, history }) {
     order.itemsPrice = order.orderItems.reduce(
       (acc, item) =>
         acc +
-        (item.hasOff ? item.price - item.price * item.hasOff : item.price) *
+        Math.round(
+          item.hasOff ? item.price - item.price * item.hasOff : item.price
+        ) *
           item.qty,
       0
     );
@@ -237,22 +239,22 @@ function OrderScreen({ match, history }) {
                             <strong>
                               {item.qty} X{" "}
                               <NumberFormat
-                                value={
+                                value={Math.round(
                                   item.hasOff
                                     ? item.price - item.price * item.hasOff
                                     : item.price
-                                }
+                                )}
                                 displayType={"text"}
                                 thousandSeparator={true}
                                 prefix={"تومان"}
                               />
                               ={" "}
                               <NumberFormat
-                                value={
+                                value={Math.round(
                                   item.qty * item.hasOff
                                     ? item.price - item.price * item.hasOff
                                     : item.price
-                                }
+                                )}
                                 displayType={"text"}
                                 thousandSeparator={true}
                                 prefix={"تومان"}

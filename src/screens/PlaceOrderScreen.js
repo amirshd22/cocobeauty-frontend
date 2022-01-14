@@ -25,7 +25,9 @@ function PlaceOrderScreen({ history }) {
   const itemsPrice = cartItems.reduce(
     (acc, item) =>
       acc +
-      (item.hasOff ? item.price - item.price * item.hasOff : item.price) *
+      Math.round(
+        item.hasOff ? item.price - item.price * item.hasOff : item.price
+      ) *
         item.qty,
     0
   );
@@ -229,22 +231,22 @@ function PlaceOrderScreen({ history }) {
                           <Col md={4}>
                             {item.qty} X{" "}
                             <NumberFormat
-                              value={
+                              value={Math.round(
                                 item.hasOff
                                   ? item.price - item.price * item.hasOff
                                   : item.price
-                              }
+                              )}
                               displayType={"text"}
                               thousandSeparator={true}
                               prefix={"تومان"}
                             />
                             ={" "}
                             <NumberFormat
-                              value={
+                              value={Math.round(
                                 item.qty * item.hasOff
                                   ? item.price - item.price * item.hasOff
                                   : item.price
-                              }
+                              )}
                               displayType={"text"}
                               thousandSeparator={true}
                               prefix={"تومان"}

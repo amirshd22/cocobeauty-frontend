@@ -53,9 +53,11 @@ function CartScreen({ match, location, history }) {
                     (acc, item) =>
                       acc +
                       item.qty *
-                        (item.hasOff
-                          ? item.price - item.price * Number(item.hasOff)
-                          : item.price),
+                        Math.round(
+                          item.hasOff
+                            ? item.price - item.price * Number(item.hasOff)
+                            : item.price
+                        ),
                     0
                   )}
                   displayType={"text"}
@@ -108,9 +110,11 @@ function CartScreen({ match, location, history }) {
                     <Col md={2}>
                       <small>
                         تومان
-                        {item.hasOff
-                          ? item.price - item.price * Number(item.hasOff)
-                          : item.price}
+                        {Math.round(
+                          item.hasOff
+                            ? item.price - item.price * Number(item.hasOff)
+                            : item.price
+                        )}
                       </small>
                     </Col>
                     <Col md={3}>

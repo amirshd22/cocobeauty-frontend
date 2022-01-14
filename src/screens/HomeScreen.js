@@ -102,7 +102,7 @@ function HomeScreen({ history }) {
               <>
                 <ListGroup.Item className="mb-2">
                   <Row className="row-cols-1 row-cols-md-3">
-                    <Col md={8} className="m-auto">
+                    <Col md={hasOffProducts ? 8 : 12} className="m-auto">
                       <Carousel className="rounded" indicators>
                         {images.map((image) => {
                           return (
@@ -148,11 +148,11 @@ function HomeScreen({ history }) {
                                   <Row>
                                     <Col>
                                       <NumberFormat
-                                        value={
+                                        value={Math.round(
                                           hasOffProduct.price -
-                                          hasOffProduct.price *
-                                            Number(hasOffProduct.hasOff)
-                                        }
+                                            hasOffProduct.price *
+                                              Number(hasOffProduct.hasOff)
+                                        )}
                                         displayType="text"
                                         thousandSeparator={true}
                                         prefix={"تومان"}
@@ -167,7 +167,8 @@ function HomeScreen({ history }) {
                               className="text-light text-center"
                               style={{ backgroundColor: "#fc6767" }}
                             >
-                              %تخفیف {Number(hasOffProduct.hasOff) * 100}
+                              %تخفیف{" "}
+                              {hasOffProduct.hasOff.substring(0, 4) * 100}
                             </Card.Footer>
                           </Card>
                         </Link>
